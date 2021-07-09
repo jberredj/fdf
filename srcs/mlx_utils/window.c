@@ -6,7 +6,7 @@
 /*   By: jberredj <jberredj@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/14 15:44:59 by jberredj          #+#    #+#             */
-/*   Updated: 2021/06/07 15:49:20 by jberredj         ###   ########.fr       */
+/*   Updated: 2021/06/22 10:58:02 by jberredj         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,10 @@
 
 void free_exit(t_window *win)
 {
+	mlx_destroy_image(win->mlx, win->fb.front->ptr);
+	free(win->fb.front);
+	mlx_destroy_image(win->mlx, win->fb.back->ptr);
+	free(win->fb.back);
 	if (win->win)
 		mlx_destroy_window(win->mlx, win->win);
 	mlx_destroy_display(win->mlx);

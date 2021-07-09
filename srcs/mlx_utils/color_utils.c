@@ -6,39 +6,40 @@
 /*   By: jberredj <jberredj@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/06 11:58:13 by jberredj          #+#    #+#             */
-/*   Updated: 2021/05/19 14:03:09 by jberredj         ###   ########.fr       */
+/*   Updated: 2021/06/07 17:38:19 by jberredj         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdint.h>
 #include <stdio.h>
+#include "structs/t_argb.h"
 
-int		get_a(int trgb)
+uint8_t	get_a(uint32_t argb)
 {
-	return ((trgb & 0xFF000000) >> 24);
+	return ((argb & 0xFF000000) >> 24);
 }
 
-int		get_r(int trgb)
+uint8_t	get_r(uint32_t argb)
 {
-	return ((trgb & 0x00FF0000) >> 16);
+	return ((argb & 0x00FF0000) >> 16);
 }
 
-int	get_g(int trgb)
+uint8_t	get_g(uint32_t argb)
 {
-	return ((trgb & 0x0000FF00) >> 8);
+	return ((argb & 0x0000FF00) >> 8);
 }
 
-int		get_b(int trgb)
+uint8_t	get_b(uint32_t argb)
 {
-	return (trgb & 0x000000FF);
+	return (argb & 0x000000FF);
 }
  
-int addShade(int color, double shade)
+int addShade(uint32_t color, double shade)
 {
-	int a;
-	int	r;
-	int	g;
-	int	b;
+	uint8_t a;
+	uint8_t	r;
+	uint8_t	g;
+	uint8_t	b;
 
 	a = ((color >> 24) & 0xFF) - (((color >> 24) & 0xFF) * shade);
 	r = ((color >> 16) & 0xFF) - (((color >> 16) & 0xFF) * shade);
@@ -47,21 +48,12 @@ int addShade(int color, double shade)
 	return(a << 24 | r << 16 | g << 8 | b);
 }
 
-int	argb(int a, int r, int g, int b)
+uint32_t	argb(uint8_t a, uint8_t r, uint8_t g, uint8_t b)
 {
 	return (a << 24 | r << 16 | g << 8 | b);
 }
 
-typedef	struct s_argb
-{
-	int a;
-	int r;
-	int g;
-	int	b;
-}			t_argb;
-
-
-int	blend_argb(int colora, int colorb)
+uint32_t	blend_argb(uint32_t colora, uint32_t colorb)
 {
 	t_argb	ca;
 	t_argb	cb;

@@ -1,27 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   t_coord.h                                          :+:      :+:    :+:   */
+/*   camera.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jberredj <jberredj@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/05/17 12:13:16 by jberredj          #+#    #+#             */
-/*   Updated: 2021/05/17 12:13:35 by jberredj         ###   ########.fr       */
+/*   Created: 2021/06/14 14:03:57 by jberredj          #+#    #+#             */
+/*   Updated: 2021/06/14 14:58:09 by jberredj         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef T_COORD_H
-# define T_COORD_H
-typedef struct s_int_coord
-{
-	int	x;
-	int	y;
-}t_int_coord;
+#include "structs/t_vec.h"
 
-typedef struct s_coord
+typedef struct	s_camera
 {
-	double	x;
-	double	y;
-}t_coord;
-
-#endif
+	t_vec3d	position;
+	t_vec3d	target;
+}		t_camera;

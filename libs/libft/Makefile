@@ -6,7 +6,7 @@
 #    By: jberredj <jberredj@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/12/03 13:41:15 by jberredj          #+#    #+#              #
-#    Updated: 2021/03/01 11:34:28 by jberredj         ###   ########.fr        #
+#    Updated: 2021/06/08 11:17:48 by jberredj         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -36,7 +36,7 @@ FT_TO			=	ft_atoi.c ft_itoa.c ft_intlen.c ft_intlen_base.c ft_lllen_base.c ft_ui
 					ft_uintlen.c ft_lltoa.c ft_ulltoa.c ft_ulllen.c ft_lllen.c ft_tolower.c \
 					ft_toupper.c ft_ulllen_base.c ft_ulltoa_base.c ft_atof.c
 
-FT_UTILS		=	check_base.c
+FT_UTILS		=	check_base.c ft_swap.c
 
 GET_NEXT_LINE	=	get_next_line.c get_next_line_utils.c
 

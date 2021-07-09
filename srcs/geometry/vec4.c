@@ -1,19 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_utils.h                                         :+:      :+:    :+:   */
+/*   vec4.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jberredj <jberredj@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/01/26 10:40:48 by jberredj          #+#    #+#             */
-/*   Updated: 2021/06/08 11:17:30 by jberredj         ###   ########.fr       */
+/*   Created: 2021/06/10 11:00:53 by jberredj          #+#    #+#             */
+/*   Updated: 2021/06/10 11:02:37 by jberredj         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FT_UTILS_H
-# define FT_UTILS_H
-#include <stdint.h>
+#include "structs/t_vec.h"
 
-void	ft_swap(uint64_t *a, uint64_t *b);
-int		check_base(char *str);
-#endif
+t_vec4i	vec4i(int x, int y, int z, int w)
+{
+	return ((t_vec4i){x, y, z, w});
+}
+
+t_vec4d	vec4d(double x, double y, double z, double w)
+{
+	return ((t_vec4d){x, y, z, w});
+}

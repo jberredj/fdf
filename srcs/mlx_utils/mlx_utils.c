@@ -6,21 +6,26 @@
 /*   By: jberredj <jberredj@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/05 15:37:11 by jberredj          #+#    #+#             */
-/*   Updated: 2021/05/18 18:01:36 by jberredj         ###   ########.fr       */
+/*   Updated: 2021/06/08 15:31:42 by jberredj         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "mlx.h"
 #include "mlx_utils.h"
 #include <stdlib.h>
+#include <stdint.h>
 
-void	img_pixel_put(t_img *data, int x, int y, int color)
+void	img_pixel_put(t_img *data, int x, int y, uint32_t color)
 {
     char    *dst;
 
-    dst = data->addr +
-	(y * data->line_length + x * (data->bits_per_pixel / 8));
-    *(unsigned int*)dst = color;
+	if (x >= 0 && x < data->width
+	&& y >= 0 && y < data->height)
+	{
+		dst = data->addr +
+		(y * data->line_length + x * (data->bits_per_pixel / 8));
+		*(uint32_t*)dst = color;
+	}
 }
 
 t_img	*new_image(void *mlx, int width, int height)
@@ -42,13 +47,13 @@ t_img	*new_image(void *mlx, int width, int height)
 	return (img);
 }
 
-int get_color_from_mlx_img(t_img img, int x, int y)
+uint32_t get_color_from_mlx_img(t_img img, int x, int y)
 {
     char    *dst;
 
     dst = img.addr +
 	(y * img.line_length + x * (img.bits_per_pixel / 8));
-    return(*(int*)dst);
+    return(*(uint32_t*)dst);
 }
 
 t_img *new_image_from_file(void *mlx, char *filename)

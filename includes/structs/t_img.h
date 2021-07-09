@@ -6,14 +6,15 @@
 /*   By: jberredj <jberredj@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/17 12:06:06 by jberredj          #+#    #+#             */
-/*   Updated: 2021/05/18 15:58:54 by jberredj         ###   ########.fr       */
+/*   Updated: 2021/06/22 10:51:12 by jberredj         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef T_IMG_H
 # define T_IMG_H
 # include <stdbool.h>
-typedef struct s_img {
+typedef struct s_img
+{
 	void	*ptr;
 	char	*addr;
 	int		bits_per_pixel;
@@ -23,7 +24,7 @@ typedef struct s_img {
 	int		height;
 }			t_img;
 
-typedef	struct	s_textures
+typedef struct s_textures
 {
 	t_img	*n_tex;
 	t_img	*e_tex;
@@ -34,27 +35,27 @@ typedef	struct	s_textures
 	int		f_color;
 	bool	c_loaded;
 	int		c_color;
-}				t_textures;
+}			t_textures;
 
-typedef struct	s_square
+typedef struct s_square
 {
-	int x;
+	int	x;
 	int	y;
-	int size;
+	int	size;
 	int	color;
-}				t_square;
+}		t_square;
 
-typedef struct	s_circle
+typedef struct s_circle
 {
 	int		x;
 	int		y;
 	double	radius;
 	int		color;
-}				t_circle;
+}			t_circle;
 
-typedef struct	s_frames
+typedef struct s_frame_buffer
 {
-	t_img	*f1;
-	t_img	*f2;
-}				t_frames;
+	t_img	*front;
+	t_img	*back;
+}			t_fb;
 #endif

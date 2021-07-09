@@ -1,19 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_utils.h                                         :+:      :+:    :+:   */
+/*   t_point.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jberredj <jberredj@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/01/26 10:40:48 by jberredj          #+#    #+#             */
-/*   Updated: 2021/06/08 11:17:30 by jberredj         ###   ########.fr       */
+/*   Created: 2021/06/07 16:35:21 by jberredj          #+#    #+#             */
+/*   Updated: 2021/06/07 16:37:52 by jberredj         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FT_UTILS_H
-# define FT_UTILS_H
-#include <stdint.h>
+#ifndef T_POINT_H
+# define T_POINT_H
+# include <stdint.h>
+typedef struct	s_point
+{
+	int			x;
+	int			y;
+	int			z;
+	uint32_t	color;
+}				t_point;
 
-void	ft_swap(uint64_t *a, uint64_t *b);
-int		check_base(char *str);
 #endif

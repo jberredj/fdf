@@ -1,19 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_utils.h                                         :+:      :+:    :+:   */
+/*   arwing.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jberredj <jberredj@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/01/26 10:40:48 by jberredj          #+#    #+#             */
-/*   Updated: 2021/06/08 11:17:30 by jberredj         ###   ########.fr       */
+/*   Created: 2021/07/09 16:04:04 by jberredj          #+#    #+#             */
+/*   Updated: 2021/07/09 16:26:46 by jberredj         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FT_UTILS_H
-# define FT_UTILS_H
-#include <stdint.h>
+#ifndef	ARWING_H
+# define ARWING_H
+# include "structs/t_3dobj.h"
 
-void	ft_swap(uint64_t *a, uint64_t *b);
-int		check_base(char *str);
+t_3dobj		*create_arwing(void);
+t_vertex	*arwing_vertices(void);
+t_face		*arwing_faces(void);
+
 #endif

@@ -1,33 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   t_window.h                                         :+:      :+:    :+:   */
+/*   objects.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jberredj <jberredj@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/05/17 11:48:01 by jberredj          #+#    #+#             */
-/*   Updated: 2021/07/09 16:16:46 by jberredj         ###   ########.fr       */
+/*   Created: 2021/07/09 15:56:03 by jberredj          #+#    #+#             */
+/*   Updated: 2021/07/09 16:01:22 by jberredj         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef T_WINDOW_H
-# define T_WINDOW_H
-# include <stdbool.h>
-# include "t_img.h"
+#ifndef OBJECTS_H
+# define OBJECTS_H
 # include "structs/t_3dobj.h"
-typedef struct s_window
-{
-	void		*mlx;
-	void		*win;
-	bool		load_res;
-	int			width;
-	int			height;
-	char		*title;
-	t_3dobj		*objs;
-	double			rot_x;
-	double			rot_y;
-	double			rot_z;
-	t_fb		fb;
-}			t_window;
+t_edge	*new_edge(int a, int b);
+t_edge	set_edge(int a, int b);
+t_face	*new_face(int nbr_edges);
+t_face	set_face(int nbr_edges, t_edge *edges);
+t_tri	tri(int a, int b, int c);
+t_quad	quad(int a, int b, int c, int d);
+int	set_tri_face(t_tri tri, t_face *face);
+int	set_quad_face(t_quad quad, t_face *face);
+t_3dobj	blank_obj(void);
+void	*free_3dobj(t_3dobj *obj);
 
 #endif

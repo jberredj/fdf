@@ -1,19 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_utils.h                                         :+:      :+:    :+:   */
+/*   t_argb.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jberredj <jberredj@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/01/26 10:40:48 by jberredj          #+#    #+#             */
-/*   Updated: 2021/06/08 11:17:30 by jberredj         ###   ########.fr       */
+/*   Created: 2021/06/07 17:37:11 by jberredj          #+#    #+#             */
+/*   Updated: 2021/06/07 17:38:00 by jberredj         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FT_UTILS_H
-# define FT_UTILS_H
-#include <stdint.h>
-
-void	ft_swap(uint64_t *a, uint64_t *b);
-int		check_base(char *str);
+#ifndef T_ARGB_H
+# define T_ARGB_H
+# include <stdint.h>
+typedef	struct s_argb
+{
+	uint8_t	a;
+	uint8_t	r;
+	uint8_t	g;
+	uint8_t	b;
+}			t_argb;
 #endif

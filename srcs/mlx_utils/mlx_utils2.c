@@ -6,7 +6,7 @@
 /*   By: jberredj <jberredj@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/06 12:01:03 by jberredj          #+#    #+#             */
-/*   Updated: 2021/06/07 15:33:03 by jberredj         ###   ########.fr       */
+/*   Updated: 2021/06/10 10:46:32 by jberredj         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,11 +25,11 @@ void	init_img_struct(t_img *img)
 	img->width = 0;
 }
 
-void putImgOnImg(t_img toPut, t_img *dst, t_coord orig)
+void putImgOnImg(t_img toPut, t_img *dst, t_vec2d orig)
 {
-	t_coord	cur;
-	t_coord prt;
-	int color;
+	t_vec2d	cur;
+	t_vec2d prt;
+	uint32_t color;
 
 	cur.x = orig.x;
 	cur.y = orig.y;
