@@ -6,7 +6,7 @@
 /*   By: jberredj <jberredj@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/05 16:36:03 by jberredj          #+#    #+#             */
-/*   Updated: 2021/06/10 10:46:09 by jberredj         ###   ########.fr       */
+/*   Updated: 2021/07/15 11:58:49 by jberredj         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,5 +23,5 @@ uint32_t	get_color_from_mlx_img(t_img img, int x, int y);
 t_img		*new_image_from_file(void *mlx, char *filename);
 void		free_img(void *mlx, t_img **img);
 int			close_mlx(t_window *win);
-void		init_win_struct(t_window *win, char *title);
+void		img_clear(t_img *img, uint32_t color);
 #endif

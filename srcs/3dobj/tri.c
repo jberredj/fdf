@@ -1,24 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   t_point.h                                          :+:      :+:    :+:   */
+/*   tri.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jberredj <jberredj@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/07/10 18:40:33 by jberredj          #+#    #+#             */
-/*   Updated: 2021/07/15 10:37:05 by jberredj         ###   ########.fr       */
+/*   Created: 2021/07/15 13:21:11 by jberredj          #+#    #+#             */
+/*   Updated: 2021/07/15 13:25:24 by jberredj         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef T_POINT_H
-# define T_POINT_H
-# include <stdint.h>
-# include "t_vec.h"
+#include "structs/t_3dobj.h"
+#include "objects.h"
 
-typedef struct s_point
+t_tri	tri(int a, int b, int c)
 {
-	t_vec2i		coord;
-	uint32_t	color;
-}				t_point;
+	return ((t_tri){.a = a, .b = b, .c = c});
+}
 
-#endif
+int	set_tri_face(t_tri tri, t_face *face)
+{
+	if (face->nbr_edges != 3)
+		return (-1);
+	if (!face->edges)
+		return (-2);
+	face->edges[0] = set_edge(tri.a, tri.b);
+	face->edges[1] = set_edge(tri.b, tri.c);
+	face->edges[2] = set_edge(tri.c, tri.a);
+	return (0);
+}

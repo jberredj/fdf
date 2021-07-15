@@ -6,7 +6,7 @@
 /*   By: jberredj <jberredj@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/10 10:58:53 by jberredj          #+#    #+#             */
-/*   Updated: 2021/07/09 16:25:25 by jberredj         ###   ########.fr       */
+/*   Updated: 2021/07/15 13:31:29 by jberredj         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ t_vec3i	*vec3i_new(int x, int y, int z)
 	if (!ptr)
 		return (NULL);
 	*ptr = vec3i(x, y, z);
-	return	(ptr);
+	return (ptr);
 }
 
 t_vec3d	*vec3d_new(double x, double y, double z)
@@ -42,7 +42,5 @@ t_vec3d	*vec3d_new(double x, double y, double z)
 	if (!ptr)
 		return (NULL);
 	*ptr = vec3d(x, y, z);
-	return	(ptr);
+	return (ptr);
 }
-
-

@@ -6,7 +6,7 @@
 /*   By: jberredj <jberredj@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/29 09:53:20 by jberredj          #+#    #+#             */
-/*   Updated: 2021/07/09 16:19:45 by jberredj         ###   ########.fr       */
+/*   Updated: 2021/07/15 12:06:38 by jberredj         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,36 +19,36 @@ typedef struct s_edge
 {
 	int	a;
 	int	b;
-}				t_edge;
+}	t_edge;
 
 typedef struct s_face
 {
 	int			nbr_edges;
 	t_edge		*edges;
 	uint32_t	color;
-}				t_face;
+}	t_face;
 
-typedef	struct s_tri
+typedef struct s_tri
 {
 	int	a;
 	int	b;
 	int	c;
-}				t_tri;
+}	t_tri;
 
-typedef	struct s_quad
+typedef struct s_quad
 {
 	int	a;
 	int	b;
 	int	c;
 	int	d;
-}				t_quad;
+}	t_quad;
 
-typedef	struct s_vertex
+typedef struct s_vertex
 {
 	t_vec3d		coord;
 	t_vec2d		projected;
 	uint32_t	color;
-}				t_vertex;
+}	t_vertex;
 
 typedef struct s_3dobj
 {
@@ -57,7 +57,6 @@ typedef struct s_3dobj
 	int			nbr_faces;
 	t_face		*faces;
 	t_vec3d		orient;	
-}				t_3dobj;
-
+}	t_3dobj;
 
 #endif

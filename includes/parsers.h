@@ -1,23 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   vec4.c                                             :+:      :+:    :+:   */
+/*   parsers.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jberredj <jberredj@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/06/10 11:00:53 by jberredj          #+#    #+#             */
-/*   Updated: 2021/06/10 11:02:37 by jberredj         ###   ########.fr       */
+/*   Created: 2021/07/10 16:52:07 by jberredj          #+#    #+#             */
+/*   Updated: 2021/07/15 11:58:32 by jberredj         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "structs/t_vec.h"
+#ifndef PARSERS_H
+# define PARSERS_H
+# include "structs/t_window.h"
 
-t_vec4i	vec4i(int x, int y, int z, int w)
-{
-	return ((t_vec4i){x, y, z, w});
-}
+int	args_parser(int argc, char **argv, t_window *win);
 
-t_vec4d	vec4d(double x, double y, double z, double w)
-{
-	return ((t_vec4d){x, y, z, w});
-}
+#endif

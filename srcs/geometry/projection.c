@@ -1,21 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   arwing.h                                           :+:      :+:    :+:   */
+/*   projection.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jberredj <jberredj@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/07/09 16:04:04 by jberredj          #+#    #+#             */
-/*   Updated: 2021/07/09 16:26:46 by jberredj         ###   ########.fr       */
+/*   Created: 2021/07/10 17:01:56 by jberredj          #+#    #+#             */
+/*   Updated: 2021/07/15 13:31:40 by jberredj         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef	ARWING_H
-# define ARWING_H
-# include "structs/t_3dobj.h"
+#include "structs/t_vec.h"
 
-t_3dobj		*create_arwing(void);
-t_vertex	*arwing_vertices(void);
-t_face		*arwing_faces(void);
-
-#endif
+t_vec2d	ortho_projection(t_vec3d point, double zoom, double amplitude)
+{
+	return ((t_vec2d){.x = point.x * zoom, .y = point.y * zoom});
+}

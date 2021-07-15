@@ -1,24 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   t_face.h                                           :+:      :+:    :+:   */
+/*   edges.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jberredj <jberredj@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/06/24 16:12:09 by jberredj          #+#    #+#             */
-/*   Updated: 2021/06/24 16:13:18 by jberredj         ###   ########.fr       */
+/*   Created: 2021/07/15 13:18:22 by jberredj          #+#    #+#             */
+/*   Updated: 2021/07/15 13:22:07 by jberredj         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef T_FACE_H
-# define T_FACE_H
+#include <stdlib.h>
+#include "structs/t_3dobj.h"
 
-typedef struct s_face
+t_edge	*new_edge(int a, int b)
 {
-	int	a;
-	int	b;
-	int	c;
-};
+	t_edge	*edge;
 
+	edge = (t_edge *)malloc(sizeof(t_edge));
+	if (!edge)
+		return (NULL);
+	edge->a = a;
+	edge->b = b;
+	return (edge);
+}
 
-#endif
+t_edge	set_edge(int a, int b)
+{
+	return ((t_edge){.a = a, .b = b});
+}

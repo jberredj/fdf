@@ -6,7 +6,7 @@
 /*   By: jberredj <jberredj@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/17 12:13:16 by jberredj          #+#    #+#             */
-/*   Updated: 2021/06/09 17:22:59 by jberredj         ###   ########.fr       */
+/*   Updated: 2021/07/15 12:04:56 by jberredj         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,42 +16,26 @@ typedef struct s_vec2i
 {
 	int	x;
 	int	y;
-}				t_vec2i;
+}	t_vec2i;
 
 typedef struct s_vec2d
 {
 	double	x;
 	double	y;
-}				t_vec2d;
+}	t_vec2d;
 
 typedef struct s_vec3i
 {
 	int	x;
 	int	y;
 	int	z;
-}				t_vec3i;
+}	t_vec3i;
 
 typedef struct s_vec3d
 {
 	double	x;
 	double	y;
-	double	z;
-	
-}				t_vec3d;
+	double	z;	
+}	t_vec3d;
 
-typedef struct s_vec4i
-{
-	int	x;
-	int	y;
-	int	z;
-	int	w;
-}				t_vec4i;
-
-typedef struct s_vec4d
-{
-	double	x;
-	double	y;
-	double	z;
-	double	w;
-}				t_vec4d;
 #endif

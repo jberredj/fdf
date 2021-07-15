@@ -6,37 +6,19 @@
 /*   By: jberredj <jberredj@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/06 11:58:13 by jberredj          #+#    #+#             */
-/*   Updated: 2021/06/07 17:38:19 by jberredj         ###   ########.fr       */
+/*   Updated: 2021/07/15 14:17:41 by jberredj         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdint.h>
-#include <stdio.h>
 #include "structs/t_argb.h"
+#include "structs/t_vec.h"
+#include "structs/t_point.h"
+#include "color_utils.h"
 
-uint8_t	get_a(uint32_t argb)
+int	addShade(uint32_t color, double shade)
 {
-	return ((argb & 0xFF000000) >> 24);
-}
-
-uint8_t	get_r(uint32_t argb)
-{
-	return ((argb & 0x00FF0000) >> 16);
-}
-
-uint8_t	get_g(uint32_t argb)
-{
-	return ((argb & 0x0000FF00) >> 8);
-}
-
-uint8_t	get_b(uint32_t argb)
-{
-	return (argb & 0x000000FF);
-}
- 
-int addShade(uint32_t color, double shade)
-{
-	uint8_t a;
+	uint8_t	a;
 	uint8_t	r;
 	uint8_t	g;
 	uint8_t	b;
@@ -45,11 +27,6 @@ int addShade(uint32_t color, double shade)
 	r = ((color >> 16) & 0xFF) - (((color >> 16) & 0xFF) * shade);
 	g = ((color >> 8) & 0xFF) - (((color >> 8) & 0xFF) * shade);
 	b = (color & 0xFF) - ((color & 0xFF) * shade);
-	return(a << 24 | r << 16 | g << 8 | b);
-}
-
-uint32_t	argb(uint8_t a, uint8_t r, uint8_t g, uint8_t b)
-{
 	return (a << 24 | r << 16 | g << 8 | b);
 }
 
@@ -74,9 +51,29 @@ uint32_t	blend_argb(uint32_t colora, uint32_t colorb)
 	c_out.g = (ca.g * ca.a + cb.g * cb.a * (255 - ca.a) / 255) / c_out.a;
 	c_out.b = (ca.b * ca.a + cb.b * cb.a * (255 - ca.a) / 255) / c_out.a;
 	c_out.a = 255 - c_out.a;
-	// c_out.a = 255 - ca.a + (cb.a * (255 - ca.a) / 255);
-	// c_out.r = (ca.r * ca.a / 255) + (cb.r * cb.a * (255 - ca.a) / (255*255));
-	// c_out.g = (ca.g * ca.a / 255) + (cb.g * cb.a * (255 - ca.a) / (255*255));
-	// c_out.b = (ca.g * ca.a / 255) + (cb.b * cb.a * (255 - ca.a) / (255*255));
 	return (argb(c_out.a, c_out.r, c_out.g, c_out.b));
+}
+
+uint8_t	color_linear_interpolation(uint8_t c1, uint8_t c2, double percentage)
+{
+	return (((1 - percentage) * c1 + percentage * c2));
+}
+
+uint32_t	get_point_color(t_point cur, t_point p0, t_point p1, t_vec2i delta)
+{
+	uint8_t		r;
+	uint8_t		g;
+	uint8_t		b;
+	double		pct;
+
+	if (cur.color == p1.color)
+		return (cur.color);
+	if (delta.x > delta.y)
+		pct = percent((int)p0.coord.x, (int)p1.coord.x, (int)cur.coord.x);
+	else
+		pct = percent((int)p0.coord.y, (int)p1.coord.y, (int)cur.coord.y);
+	r = color_linear_interpolation(get_r(p0.color), get_r(p1.color), pct);
+	g = color_linear_interpolation(get_g(p0.color), get_g(p1.color), pct);
+	b = color_linear_interpolation(get_b(p0.color), get_b(p1.color), pct);
+	return (argb(0xFF, r, g, b));
 }

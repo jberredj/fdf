@@ -1,25 +1,38 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   t_triangle.h                                       :+:      :+:    :+:   */
+/*   argb.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jberredj <jberredj@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/06/10 10:36:54 by jberredj          #+#    #+#             */
-/*   Updated: 2021/06/10 10:52:44 by jberredj         ###   ########.fr       */
+/*   Created: 2021/07/15 14:15:55 by jberredj          #+#    #+#             */
+/*   Updated: 2021/07/15 14:16:57 by jberredj         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef T_TRIANGLE_H
-# define T_TRIANGLE_H
-# include <stdint.h>
-# include "structs/t_vec.h"
+#include <stdint.h>
 
-typedef struct s_triangle
+uint8_t	get_a(uint32_t argb)
 {
-	t_vec2i		a;
-	t_vec2i		b;
-	t_vec2i		c;
-	uint32_t	color;
-}				t_triangle;
-#endif
+	return ((argb & 0xFF000000) >> 24);
+}
+
+uint8_t	get_r(uint32_t argb)
+{
+	return ((argb & 0x00FF0000) >> 16);
+}
+
+uint8_t	get_g(uint32_t argb)
+{
+	return ((argb & 0x0000FF00) >> 8);
+}
+
+uint8_t	get_b(uint32_t argb)
+{
+	return (argb & 0x000000FF);
+}
+
+uint32_t	argb(uint8_t a, uint8_t r, uint8_t g, uint8_t b)
+{
+	return (a << 24 | r << 16 | g << 8 | b);
+}
