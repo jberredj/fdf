@@ -1,24 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   utils.c                                            :+:      :+:    :+:   */
+/*   exit.h                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jberredj <jberredj@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/07/15 11:50:15 by jberredj          #+#    #+#             */
-/*   Updated: 2021/07/15 12:18:09 by jberredj         ###   ########.fr       */
+/*   Created: 2021/07/15 14:42:34 by jberredj          #+#    #+#             */
+/*   Updated: 2021/07/15 14:43:56 by jberredj         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-double	percent(int min, int max, int current)
-{
-	double	position;
-	double	size;
+#ifndef EXIT_H
+# define EXIT_H
+# include "structs/t_window.h"
 
-	position = current - min;
-	size = max - min;
-	if (size == 0)
-		return (1.0);
-	else
-		return (position / size);
-}
+void	free_exit(t_window *win);
+
+#endif

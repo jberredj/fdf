@@ -6,7 +6,7 @@
 #    By: jberredj <jberredj@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/06/07 15:10:49 by jberredj          #+#    #+#              #
-#    Updated: 2021/07/15 12:12:44 by jberredj         ###   ########.fr        #
+#    Updated: 2021/07/15 14:48:57 by jberredj         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -22,11 +22,11 @@ HEIGHT		=	600
 
 LIBS		=	libmlx.a libft.a
 
-MLX_UTILS	=	color_utils.c keyboard_hook.c mlx_utils.c mlx_utils2.c window.c
+3DOBJ		=	3dobj.c edges.c faces.c put_3dobj.c quad.c tri.c
 
-GEOMETRY	=	vec2.c vec3.c line.c projection.c vec3d_rotate.c
+GEOMETRY	=	line.c projection.c vec2.c vec3.c vec3d_rotate.c
 
-3DOBJ		=	3dobj.c put_3dobj.c
+MLX_UTILS	=	argb.c color_utils.c keyboard_hook.c mlx_utils.c mlx_utils2.c window.c
 
 MAIN		=	main.c exit.c
 

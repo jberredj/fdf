@@ -6,7 +6,7 @@
 /*   By: jberredj <jberredj@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/07 14:43:38 by jberredj          #+#    #+#             */
-/*   Updated: 2021/07/15 14:30:15 by jberredj         ###   ########.fr       */
+/*   Updated: 2021/07/15 14:43:38 by jberredj         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,55 +58,55 @@ int	loop(t_window *win)
 	push_back_fb(win->mlx, win->win, &win->fb, 0x313131);
 	return (0);
 }
-/*
-**t_3dobj *create_simple_ls(void)
-**{
-**	t_3dobj	*ls;
-**
-**	ls = (t_3dobj *)malloc(sizeof(t_3dobj));
-**	ls->nbr_faces = 9;
-**	ls->nbr_vertices = 4 * 4;
-**	ls->vertices = (t_vertex *)malloc(sizeof(t_vertex) * 4 * 4);
-**	ls->faces = (t_face *)malloc(sizeof(t_face) * 9);
-**
-**	ls->vertices[0].coord = vec3d(-1.5, -1.5, -5);
-**	ls->vertices[1].coord = vec3d(-0.5, -1.5, 0);
-**	ls->vertices[2].coord = vec3d(0.5, -1.5, 0);
-**	ls->vertices[3].coord = vec3d(1.5, -1.5, 0);
-**	ls->vertices[4].coord = vec3d(-1.5, -0.5, 0);
-**	ls->vertices[5].coord = vec3d(-0.5, -0.5, 3);
-**	ls->vertices[6].coord = vec3d(0.5, -0.5, -1);
-**	ls->vertices[7].coord = vec3d(1.5, -0.5, 0);
-**	ls->vertices[8].coord = vec3d(-1.5, 0.5, 0);
-**	ls->vertices[9].coord = vec3d(-0.5, 0.5, 8);
-**	ls->vertices[10].coord = vec3d(0.5, 0.5, 10);
-**	ls->vertices[11].coord = vec3d(1.5, 0.5, 0);
-**	ls->vertices[12].coord = vec3d(-1.5, 1.5, 0);
-**	ls->vertices[13].coord = vec3d(-0.5, 1.5, 0);
-**	ls->vertices[14].coord = vec3d(0.5, 1.5, 0);
-**	ls->vertices[15].coord = vec3d(1.5, 1.5, 0);
-**
-**	for(int i; i < 9; i++)
-**	{
-**		ls->faces[i].nbr_edges = 4;
-**		ls->faces[i].edges = (t_edge *)malloc(sizeof(t_edge) * 4);
-**	}
-**	set_quad_face(quad(0, 1, 5, 4), &ls->faces[0]);
-**	set_quad_face(quad(1, 2, 6, 5), &ls->faces[1]);
-**	set_quad_face(quad(2, 3, 7, 6), &ls->faces[2]);
-**	set_quad_face(quad(4, 5, 9, 8), &ls->faces[3]);
-**	set_quad_face(quad(5, 6, 10, 9), &ls->faces[4]);
-**	set_quad_face(quad(6, 7, 11, 10), &ls->faces[5]);
-**	set_quad_face(quad(8, 9, 13, 12), &ls->faces[6]);
-**	set_quad_face(quad(9, 10, 14, 13), &ls->faces[7]);
-**	set_quad_face(quad(10, 11, 15, 14), &ls->faces[8]);
-**
-**	ls->orient.x = 0.7;
-**	ls->orient.y = 0.3;
-**	ls->orient.z = -0.4;
-**	return (ls);
-**}
-*/
+
+t_3dobj *create_simple_ls(void)
+{
+	t_3dobj	*ls;
+
+	ls = (t_3dobj *)malloc(sizeof(t_3dobj));
+	ls->nbr_faces = 9;
+	ls->nbr_vertices = 4 * 4;
+	ls->vertices = (t_vertex *)malloc(sizeof(t_vertex) * 4 * 4);
+	ls->faces = (t_face *)malloc(sizeof(t_face) * 9);
+
+	ls->vertices[0].coord = vec3d(-1.5, -1.5, -5);
+	ls->vertices[1].coord = vec3d(-0.5, -1.5, 0);
+	ls->vertices[2].coord = vec3d(0.5, -1.5, 0);
+	ls->vertices[3].coord = vec3d(1.5, -1.5, 0);
+	ls->vertices[4].coord = vec3d(-1.5, -0.5, 0);
+	ls->vertices[5].coord = vec3d(-0.5, -0.5, 3);
+	ls->vertices[6].coord = vec3d(0.5, -0.5, -1);
+	ls->vertices[7].coord = vec3d(1.5, -0.5, 0);
+	ls->vertices[8].coord = vec3d(-1.5, 0.5, 0);
+	ls->vertices[9].coord = vec3d(-0.5, 0.5, 8);
+	ls->vertices[10].coord = vec3d(0.5, 0.5, 10);
+	ls->vertices[11].coord = vec3d(1.5, 0.5, 0);
+	ls->vertices[12].coord = vec3d(-1.5, 1.5, 0);
+	ls->vertices[13].coord = vec3d(-0.5, 1.5, 0);
+	ls->vertices[14].coord = vec3d(0.5, 1.5, 0);
+	ls->vertices[15].coord = vec3d(1.5, 1.5, 0);
+
+	for(int i; i < 9; i++)
+	{
+		ls->faces[i].nbr_edges = 4;
+		ls->faces[i].edges = (t_edge *)malloc(sizeof(t_edge) * 4);
+	}
+	set_quad_face(quad(0, 1, 5, 4), &ls->faces[0]);
+	set_quad_face(quad(1, 2, 6, 5), &ls->faces[1]);
+	set_quad_face(quad(2, 3, 7, 6), &ls->faces[2]);
+	set_quad_face(quad(4, 5, 9, 8), &ls->faces[3]);
+	set_quad_face(quad(5, 6, 10, 9), &ls->faces[4]);
+	set_quad_face(quad(6, 7, 11, 10), &ls->faces[5]);
+	set_quad_face(quad(8, 9, 13, 12), &ls->faces[6]);
+	set_quad_face(quad(9, 10, 14, 13), &ls->faces[7]);
+	set_quad_face(quad(10, 11, 15, 14), &ls->faces[8]);
+
+	ls->orient.x = 0.7;
+	ls->orient.y = 0.3;
+	ls->orient.z = -0.4;
+	return (ls);
+}
+
 #ifndef WIDTH
 # define WIDTH 800
 #endif
@@ -114,15 +114,13 @@ int	loop(t_window *win)
 # define HEIGHT 600
 #endif
 
-void	free_exit(t_window *win);
-
 int	main(int argc, char **argv)
 {
 	t_window	win;
 	int			fd;
 
 	init_win_struct(&win, WIDTH, HEIGHT, "fdf");
-	fd = args_parser(argc, argv, &win);
+	//fd = args_parser(argc, argv, &win);
 	win.objs = create_simple_ls();
 	create_win(&win);
 	mlx_loop(win.mlx);
