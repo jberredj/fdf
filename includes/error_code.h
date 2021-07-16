@@ -6,7 +6,7 @@
 /*   By: jberredj <jberredj@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/14 14:50:59 by jberredj          #+#    #+#             */
-/*   Updated: 2021/07/15 12:00:10 by jberredj         ###   ########.fr       */
+/*   Updated: 2021/07/15 17:04:46 by jberredj         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,9 @@
 # define FILE_NOT_DOT_FDF -12
 # define FILE_IS_DIR -13
 # define INCORRECT_ORDER -14
+# define GNL_ERROR -15
 # define EMPTY_LINE_IN_MESH -16
 # define MAP_TOO_SMALL -17
 # define FILE_NOT_DOT_XPM -18
+# define LIST_FAIL -19
 #endif

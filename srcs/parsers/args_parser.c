@@ -6,7 +6,7 @@
 /*   By: jberredj <jberredj@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/10 16:42:43 by jberredj          #+#    #+#             */
-/*   Updated: 2021/07/10 19:29:16 by jberredj         ###   ########.fr       */
+/*   Updated: 2021/07/16 15:13:13 by jberredj         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,10 @@
 #include <fcntl.h>
 #include <sys/types.h>
 #include <unistd.h>
+#include "../libs/libft/includes/libft.h"
 #include "structs/t_window.h"
 #include "error_code.h"
+#include "exit.h"
 
 int	check_fdf_file(char *file)
 {
@@ -58,6 +60,6 @@ int args_parser(int argc, char **argv, t_window *win)
 	error = parse_arg(argc, argv);
 	if (error >= 0)
 		return (error);
-	error_exit(error, NULL, "Argument parser", win);
+	error_exit(error, win);
 	return (0);
 }

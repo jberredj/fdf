@@ -6,7 +6,7 @@
 /*   By: jberredj <jberredj@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/10 15:36:41 by jberredj          #+#    #+#             */
-/*   Updated: 2021/07/10 17:19:13 by jberredj         ###   ########.fr       */
+/*   Updated: 2021/07/16 16:52:01 by jberredj         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,9 @@
 #include "error_code.h"
 #include "structs/t_window.h"
 #include "../libs/libft/includes/libft.h"
-
-
+#include "exit.h"
+#include "objects.h"
+#include "geometry.h"
 
 bool	check_value(char *str, bool point)
 {
@@ -38,95 +39,6 @@ bool	check_value(char *str, bool point)
 	return (true);
 }
 
-int parse_raw_map(char *line, char **rawmap)
-{
-	char	*new_rawmap;
-
-	new_rawmap = ft_strjoin_free(*rawmap, line);
-	if (new_rawmap == NULL)
-		return (MALLOC_ERROR);
-	*rawmap = ft_strjoin_free(new_rawmap, "\n");
-	if (*rawmap == NULL)
-		return (MALLOC_ERROR);
-	return (0);
-}
-
-int	parser_selector(t_window *win, char *line, char **rawmap)
-{
-	char	**split;
-	int 	error;
-
-	if (is_in(line, (char *[]){"R", "NO", "SO", "WE", "EA", "S", "F", "C"}, 8))
-	{
-		if (ft_strlen(*rawmap) == 1)
-		{
-			split = NULL;
-			split = ft_split(line, ' ');
-			if (split == NULL)
-				return (MALLOC_ERROR);
-			error = parameters_parser(win, split);
-			ft_free_split(split, ft_split_size(split));
-		}
-		else
-			return (INCORRECT_ORDER);
-	}
-	else 
-		error = parse_raw_map(line, rawmap);
-	return (error);
-}
-
-int		longuest_line(char **split, size_t size)
-{
-	int i;
-	size_t	longuest;
-	size_t	current;
-
-	longuest = 0;
-	i = -1;
-	while (++i < (int)size)
-	{
-		current = ft_strlen(split[i]);
-		if (current > longuest)
-			longuest = current;
-	}
-	return (longuest);
-}
-
-int	create_map_from_raw(t_map *map, char *raw)
-{
-	char	**split;
-	int 	x;
-	int		y;
-	size_t	len;
-
-	split = ft_split(raw, '\n');
-	if (split == NULL)
-		return (MALLOC_ERROR);
-	map->y = ft_split_size(split);
-	map->x = longuest_line(split, map->y);
-	map->grid = new_map_grid(map->x, map->y);
-	if (map->grid == NULL)
-	{
-		ft_free_split(split, ft_split_size(split));
-		return (MALLOC_ERROR);
-	}
-	y = -1;
-	while (++y < map->y)
-	{
-		x = -1;
-		len = ft_strlen(split[y]);
-		while (++x < map->x)
-		{
-			if (x < (int)len)
-				map->grid[x][y] = (int)split[y][x];
-			else
-				map->grid[x][y] = ' ';
-		}
-	}
-	ft_free_split(split, ft_split_size(split));
-	return (0);
-}
-
 int	finish_read(int fd, int code)
 {
 	int		read_line;
@@ -143,58 +55,306 @@ int	finish_read(int fd, int code)
 	return (code);
 }
 
-int	read_fdf_file(t_window *win, int fd, char **raw_map)
+void	free_coord_list(t_list **list)
 {
-	char	*line;
-	int		read_line;
-	int 	error;
-	bool	empty_in_map;
+	t_list	*elem;
 
-	read_line = 1;
-	line = NULL;
-	empty_in_map = false;
-	while (read_line)
+	elem = *list;
+	while (!elem->next)
 	{
-		read_line = get_next_line(fd, &line);
-		if (empty_in_map && *line != '\0')
-			return (EMPTY_LINE_IN_MESH);
-		if (read_line == -1)
-			return (CANT_READ_FILE);
-		if (*line != '\0')
-			error = parser_selector(win, line, raw_map);
-		else if (ft_strlen(*raw_map) > 1)
-			empty_in_map = true;
-		free(line);
-		line = NULL;
-		if (error < 0)
-			return(finish_read(fd, error));
+		ft_lstclear((t_list **)&elem->content, free);
+		elem = elem->next;
 	}
+	ft_lstclear(list, free);
+}
+
+void	panic_gnl_out(int fd, int code, t_list **list, t_window *win)
+{
+	finish_read(fd, GNL_ERROR);
+	free_coord_list(list);	
+	error_exit(code, win);
+}
+
+bool	init_list(t_list **list)
+{
+	*list = ft_lstnew(NULL);
+	if (!*list)
+		return (false);
+	return (true);
+}
+
+int	fail_split_free_elem(int code, t_list **elem)
+{
+	ft_lstclear(elem, free);
+	return (code);
+}
+
+typedef struct s_load_line
+{
+	double	*zs;
+	int		nbr;
+}				t_load_line;
+
+
+void	fill_double_array(char **coord, double *zs)
+{
+	int	i;
+
+	i = -1;
+	while (coord[++i])
+		zs[i] = ft_atof(coord[i]);
+}
+
+void	free_load_line(void	*elem)
+{
+	t_load_line	*elem_cast;
+
+	if (!elem)
+		return ;
+	elem_cast = (t_load_line *)elem;
+	if (elem_cast->zs)
+		free(elem_cast->zs);
+	free(elem);
+}
+
+int	malloc_new_line(t_load_line **new_line, int nbr)
+{
+	t_load_line	*elem;
+
+	elem = (t_load_line *)malloc(sizeof(t_load_line));
+	if (!elem)
+		return (MALLOC_ERROR);
+	elem->nbr = nbr;
+	elem->zs = (double *)malloc(sizeof(double) * elem->nbr);
+	if (!elem->zs)
+	{
+		free(elem);
+		return (MALLOC_ERROR);
+	}
+	*new_line = elem;
 	return (0);
 }
 
-void fdf_parser(int fd)
+int	load_line(char **coord, t_list **y_list)
 {
-	char	*raw_map;
-	int 	error;
+	t_load_line	*new_line;
+	t_list		*new_elem;
+	int			i;
 
-	raw_map = ft_calloc(2, sizeof(char));
-	if (raw_map == NULL)
+	i = -1;
+	while (coord[++i])
+		if (!check_value(coord[i], true))
+			return (INCORRECT_VALUE);
+	if (malloc_new_line(&new_line, ft_split_size(coord)))
 		return (MALLOC_ERROR);
-	raw_map[0] = '\n';
-	error = read_fdf_file(win, fd, &raw_map);
-	close(fd);
-	if (error < 0)
+	fill_double_array(coord, new_line->zs);
+	new_elem = ft_lstnew(new_line);
+	if (!new_elem)
 	{
-		free(raw_map);
-		error_exit(error, NULL, "Cub file parser", win);
+		free_load_line(new_line);
+		return (MALLOC_ERROR);
 	}
-	error = create_map_from_raw(&win->game.map, raw_map);
-	free(raw_map);
-	if (error < 0)
-		error_exit(error, NULL, "Map loader", win);
-	win->game.map.img = new_image(win->mlx, win->game.map.x * TILE_SIZE,
-					win->game.map.y * TILE_SIZE);
-	if (win->game.map.img == NULL)
-		error_exit(MALLOC_ERROR, "Can\'t malloc map img", "Cub file parser", win);
+	ft_lstadd_back(y_list, new_elem);
 	return (0);
+}
+
+int	parse_line(char	*line, t_list **y_list)
+{
+	char	**coord;
+	int		error;
+
+	coord = ft_split(line, ' ');
+	if (!coord)
+		return (MALLOC_ERROR);
+	error = load_line(coord, y_list);
+	if (error)
+		return (error);
+	return (0);	
+}
+
+int	check_loaded(t_list *y_list, t_vec2i *mesh_size)
+{
+	t_load_line	content;
+
+	mesh_size->y = ft_lstsize(y_list);
+	if (!y_list->content)
+			return (MISSING_VALUE);
+		content = *(t_load_line *)y_list->content;
+	mesh_size->x = content.nbr;
+	y_list = y_list->next;
+	while (y_list)
+	{
+		if (!y_list->content)
+			return (MISSING_VALUE);
+		content = *(t_load_line *)y_list->content;
+		if (content.nbr != mesh_size->x)
+			return (INCORRECT_VALUE);
+		y_list = y_list->next;
+	}
+	return (0);	
+}
+
+uint32_t	get_color_from_z(double z, double z_max)
+{
+	if (z < (z * z_max) / -8)
+		return (0x000133);
+	if (z < (z * z_max) / -6)
+		return (0x001146);
+	if (z < (z * z_max) / -2)
+		return (0x00035b);
+	if (z < 0)
+		return (0x1805db);
+	if (z > (z * z_max) / 16)
+		return (0xe50000);
+	if (z > (z * z_max) / 14)
+		return (0x9a0200);
+	if (z > (z * z_max) / 12)
+		return (0x8f1402);
+	if (z > (z * z_max) / 10)
+		return (0x922b05);
+	if (z > (z * z_max) / 8)
+		return (0xb27a01);
+	if (z > (z * z_max) / 6)
+		return (0xf5bf03);
+	if (z > (z * z_max) / 4)
+		return (0xfddc5c);
+	if (z > (z * z_max) / 2)
+		return (0xc8fd3d);
+	return (0x56fca2);
+}
+
+void	attribute_color(t_vertex *vertices, int nbr)
+{
+	int	i;
+	double	z_max;
+
+	i = -1;
+	z_max = 0;
+	while (++i < nbr)
+		if (vertices[i].coord.z > z_max)
+			z_max = vertices[i].coord.z;
+	i = -1;
+	while (++i < nbr)
+		vertices[i].color = get_color_from_z(vertices[i].coord.z, z_max);
+}
+
+t_vertex	*list_to_vertices(t_list *y_list, int nbr_vert, t_vec2i	mesh_size)
+{
+	t_vertex	*vertices;
+	t_load_line	elem;
+	int			x;
+	int			y;
+
+	vertices = (t_vertex *)malloc(sizeof(t_vertex) * nbr_vert);
+	if (!vertices)
+		return (NULL);
+	y = -1;
+	while (++y < mesh_size.y)
+	{
+		x = -1;
+		elem = *(t_load_line *)y_list->content;
+		while (++x < mesh_size.x)
+			vertices[y * mesh_size.x + x].coord = vec3d(x - (mesh_size.x / 2.0), y - (mesh_size.y / 2.0), elem.zs[x]);
+		y_list = y_list->next;
+	}
+	attribute_color(vertices, nbr_vert);
+	return (vertices);
+}
+
+t_quad	mesh_face_index(t_vec2i size, t_vec2i offset)
+{
+	return (
+		quad(
+			(offset.y * size.x) + offset.x,
+			(offset.y * size.x) + offset.x + 1,
+			((offset.y + 1) * size.x) + offset.x + 1,
+			((offset.y + 1) * size.x) + offset.x
+		)
+	);
+}
+
+t_face *create_faces(t_vec2i mesh_size, int *obj_nbr)
+{
+	int		nbr_faces;
+	t_face	*faces;
+	t_vec2i	vert_list;
+
+	nbr_faces = (mesh_size.x - 1) * (mesh_size.y - 1);
+	faces = (t_face *)malloc(sizeof(t_face) * nbr_faces);
+	if (!faces)
+		return (NULL);
+	*obj_nbr = nbr_faces;
+	while (--nbr_faces >= 0)
+		faces[nbr_faces].nbr_edges = 4;
+	vert_list.y = -1;
+	while (++vert_list.y < mesh_size.y - 1)
+	{
+		vert_list.x = -1;
+		while (++vert_list.x < mesh_size.x - 1)
+		{
+			nbr_faces++;
+			faces[nbr_faces].edges = (t_edge *)malloc(sizeof(t_edge) * 4);
+			if (!faces[nbr_faces].edges)
+				return (NULL);
+			set_quad_face(mesh_face_index(mesh_size, vert_list), &faces[nbr_faces]);
+		}
+	}
+	return (faces);
+}
+
+int create_mesh(t_list **y_list, t_3dobj **obj)
+{
+	int		error;
+	t_vec2i	mesh_size;
+	t_3dobj	*new_mesh;
+
+	error = check_loaded(*y_list, &mesh_size);
+	if (error)
+		return (INCORRECT_VALUE);
+	new_mesh = (t_3dobj *)malloc(sizeof(t_3dobj));
+	if (!new_mesh)
+		return (MALLOC_ERROR);
+	*new_mesh = blank_obj();
+	new_mesh->nbr_vertices = mesh_size.x * mesh_size.y;
+	new_mesh->vertices = list_to_vertices(*y_list, new_mesh->nbr_vertices, mesh_size);
+	if (!new_mesh->nbr_vertices)
+	{
+		free(new_mesh);
+		return (MALLOC_ERROR);
+	}
+	free_coord_list(y_list);
+	new_mesh->faces = create_faces(mesh_size, &new_mesh->nbr_faces);
+	if (!new_mesh->faces)
+	{
+		free_3dobj(new_mesh);
+		free(new_mesh);
+		return (MALLOC_ERROR);
+	}
+	new_mesh->orient = vec3d(0.523599, 0.523599, 0.9);
+	*obj = new_mesh;
+	return (0);
+}
+
+void fdf_parser(int fd, t_window *win)
+{
+	char	*line;
+	int		read_line;
+	int		error;
+	t_list	*y_list;
+
+	y_list = NULL;
+	read_line = 1;
+	while (read_line == 1)
+	{
+		read_line = get_next_line(fd, &line);
+		if (read_line == -1)
+			panic_gnl_out(fd, GNL_ERROR, &y_list, win);
+		if (*line != '\0')
+			error = parse_line(line, &y_list);
+		if (error)
+			panic_gnl_out(fd, error, &y_list, win);
+		free(line);
+	}
+	close(fd);
+	create_mesh(&y_list, &win->objs);
 }

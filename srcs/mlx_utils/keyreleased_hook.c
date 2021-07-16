@@ -1,63 +1,62 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   keyboard_hook.c                                    :+:      :+:    :+:   */
+/*   keyreleased_hook.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jberredj <jberredj@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/07/10 17:09:24 by jberredj          #+#    #+#             */
-/*   Updated: 2021/07/15 14:18:00 by jberredj         ###   ########.fr       */
+/*   Created: 2021/07/15 16:03:28 by jberredj          #+#    #+#             */
+/*   Updated: 2021/07/15 16:19:41 by jberredj         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdio.h>
+#include <stdbool.h>
 #include "structs/t_window.h"
 #include "qwerty.h"
 
-void	mesh_orientation(int keycode, t_window *win)
+static	void	mesh_orientation(int keycode, t_key *flags)
 {
 	if (keycode == KEY_LEFT)
-		win->objs->orient.y -= 0.1;
+		flags->roty = 0;
 	if (keycode == KEY_RIGHT)
-		win->objs->orient.y += 0.1;
+		flags->roty = 0;
 	if (keycode == KEY_UP)
-		win->objs->orient.x -= 0.1;
+		flags->rotx = 0;
 	if (keycode == KEY_DOWN)
-		win->objs->orient.x += 0.1;
+		flags->rotx = 0;
 	if (keycode == KEY_NUM_9)
-		win->objs->orient.z += 0.1;
+		flags->rotz = 0;
 	if (keycode == KEY_NUM_1)
-		win->objs->orient.z -= 0.1;
+		flags->rotz = 0;
+	if (keycode == KEY_R)
+		flags->reset_cam = false;
+	if (keycode == KEY_C)
+		flags->reset_pos = false;
 }
 
-void	mesh_position_and_zoom(int keycode, t_window *win)
+static	void	mesh_position_and_zoom(int keycode, t_key *flags)
 {
 	if (keycode == KEY_A)
-		win->camera.x++;
+		flags->movex = 0;
 	if (keycode == KEY_D)
-		win->camera.x--;
+		flags->movex = 0;
 	if (keycode == KEY_W)
-		win->camera.y++;
+		flags->movey = 0;
 	if (keycode == KEY_S)
-		win->camera.y--;
+		flags->movey = 0;
 	if (keycode == KEY_NUM_PLUS)
-		win->zoom++;
+		flags->zoom = 0;
 	if (keycode == KEY_NUM_MINUS)
-		win->zoom--;
-}
-
-int	key_pressed(int keycode, t_window *win)
-{
-	mesh_orientation(keycode, win);
-	mesh_position_and_zoom(keycode, win);
-	if (keycode == KEY_MINUS)
-		win->amplitude += 0.1;
-	if (keycode == KEY_EQUAL)
-		win->amplitude -= 0.1;
-	return (0);
+		flags->zoom = 0;
 }
 
 int	key_released(int keycode, t_window *win)
 {
+	mesh_orientation(keycode, &win->flags);
+	mesh_position_and_zoom(keycode, &win->flags);
+	if (keycode == KEY_MINUS)
+		win->flags.amplitude = 0;
+	if (keycode == KEY_EQUAL)
+		win->flags.amplitude = 0;
 	return (0);
 }

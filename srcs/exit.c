@@ -6,7 +6,7 @@
 /*   By: jberredj <jberredj@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/14 15:54:12 by jberredj          #+#    #+#             */
-/*   Updated: 2021/07/15 12:19:33 by jberredj         ###   ########.fr       */
+/*   Updated: 2021/07/15 17:11:44 by jberredj         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,8 @@ void	print_code_desc2(int code)
 		ft_putstr_fd("Found an empty line while parsing mesh\n", 2);
 	else if (code == MAP_TOO_SMALL)
 		ft_putstr_fd("The map is too small to be playable\n", 2);
+	else if (code == GNL_ERROR)
+		ft_putstr_fd("get_next_line() could not read file until end\n", 2);
 	else
 		ft_putstr_fd("Unknown error\n", 2);
 }
@@ -74,22 +76,12 @@ void	print_code_desc(int code)
 	print_code_desc2(code);
 }
 
-void	error_exit(int code, char *reason, char *location, t_window *win)
+void	error_exit(int code, t_window *win)
 {
 	ft_putstr_fd("Error\nCode : ", 2);
 	ft_putnbr_fd(-code, 2);
 	ft_putstr_fd("\nCode description : ", 2);
 	print_code_desc(code);
-	if (reason != NULL)
-	{
-		ft_putstr_fd("Exit reason : ", 2);
-		ft_putstr_fd(reason, 2);
-	}
-	if (location != NULL)
-	{
-		ft_putstr_fd("Exit location : ", 2);
-		ft_putstr_fd(location, 2);
-	}
 	ft_putstr_fd("\n", 2);
 	free_exit(win);
 	exit(-code);

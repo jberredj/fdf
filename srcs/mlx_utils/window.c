@@ -6,7 +6,7 @@
 /*   By: jberredj <jberredj@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/14 15:44:59 by jberredj          #+#    #+#             */
-/*   Updated: 2021/07/15 14:11:59 by jberredj         ###   ########.fr       */
+/*   Updated: 2021/07/15 16:33:46 by jberredj         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,19 @@ void	create_win(t_window *win)
 	mlx_loop_hook(win->mlx, loop, win);
 }
 
+void	init_key_struct(t_key *flags)
+{
+	flags->amplitude = 0.0;
+	flags->movex = 0.0;
+	flags->movey = 0.0;
+	flags->reset_cam = false;
+	flags->reset_pos = false;
+	flags->rotx = 0.0;
+	flags->roty = 0.0;
+	flags->rotz = 0.0;
+	flags->zoom = 0.0;
+}
+
 void	init_win_struct(t_window *win, int width, int height, char *title)
 {
 	win->height = 0;
@@ -46,9 +59,10 @@ void	init_win_struct(t_window *win, int width, int height, char *title)
 	win->height = height;
 	win->fb.front = new_image(win->mlx, 800, 600);
 	win->fb.back = new_image(win->mlx, 800, 600);
-	win->camera = vec2d(0, 0);
+	win->camera = vec2d(0.0, 0.0);
 	win->zoom = 32;
 	win->amplitude = 1;
+	init_key_struct(&win->flags);
 }
 
 void	push_back_fb(void *mlx, void *win, t_fb	*fb, uint32_t clear_color)

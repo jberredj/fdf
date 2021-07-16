@@ -6,7 +6,7 @@
 #    By: jberredj <jberredj@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/06/07 15:10:49 by jberredj          #+#    #+#              #
-#    Updated: 2021/07/15 14:48:57 by jberredj         ###   ########.fr        #
+#    Updated: 2021/07/16 15:14:00 by jberredj         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -26,14 +26,16 @@ LIBS		=	libmlx.a libft.a
 
 GEOMETRY	=	line.c projection.c vec2.c vec3.c vec3d_rotate.c
 
-MLX_UTILS	=	argb.c color_utils.c keyboard_hook.c mlx_utils.c mlx_utils2.c window.c
+MLX_UTILS	=	argb.c color_utils.c keypressed_hook.c keyreleased_hook.c mlx_utils.c mlx_utils2.c window.c
+
+PARSERS		=	args_parser.c parser.c
 
 MAIN		=	main.c exit.c
 
-SRCS	=	$(MAIN) $(MLX_UTILS) $(GEOMETRY) $(ARWING) $(3DOBJ)
+SRCS	=	$(MAIN) $(MLX_UTILS) $(GEOMETRY) $(ARWING) $(3DOBJ) $(PARSERS)
 OBJS	=	$(SRCS:.c=.o)
 
-MODULE	=	main mlx_utils geometry 3dobj
+MODULE	=	main mlx_utils geometry 3dobj parsers
 
 $(NAME): $(LIBS) $(MODULE) compile
 
@@ -66,6 +68,10 @@ geometry: objs
 
 3dobj: objs
 	$(CC) $(CFLAGS) $(HEADERS) -c $(addprefix srcs/3dobj/, $(3DOBJ)) $(DEBUG)
+	mv *.o objs
+
+parsers: objs
+	$(CC) $(CFLAGS) $(HEADERS) -c $(addprefix srcs/parsers/, $(PARSERS)) $(DEBUG) -D WIDTH=$(WIDTH) -D HEIGHT=$(HEIGHT)
 	mv *.o objs
 
 main: objs
