@@ -6,11 +6,12 @@
 /*   By: jberredj <jberredj@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/15 16:03:28 by jberredj          #+#    #+#             */
-/*   Updated: 2021/07/15 16:19:41 by jberredj         ###   ########.fr       */
+/*   Updated: 2021/07/21 21:54:02 by jberredj         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdbool.h>
+#include "mlx.h"
 #include "structs/t_window.h"
 #include "qwerty.h"
 
@@ -58,5 +59,7 @@ int	key_released(int keycode, t_window *win)
 		win->flags.amplitude = 0;
 	if (keycode == KEY_EQUAL)
 		win->flags.amplitude = 0;
+	if (keycode == KEY_ESC)
+		mlx_loop_end(win->mlx);
 	return (0);
 }

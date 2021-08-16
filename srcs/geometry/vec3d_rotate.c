@@ -6,12 +6,21 @@
 /*   By: jberredj <jberredj@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/21 18:00:40 by jberredj          #+#    #+#             */
-/*   Updated: 2021/06/22 10:36:42 by jberredj         ###   ########.fr       */
+/*   Updated: 2021/07/21 21:57:04 by jberredj         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <math.h>
 #include "structs/t_vec.h"
+#include "geometry.h"
+
+double	normalizeAngle(double angle)
+{
+	angle = fmod(angle, (2 * M_PI));
+	if (angle < 0)
+		angle = (2 * M_PI) + angle;
+	return (angle);
+}
 
 t_vec3d	vec3d_rot_x(t_vec3d v, double angle)
 {

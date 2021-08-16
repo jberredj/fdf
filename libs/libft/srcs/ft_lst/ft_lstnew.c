@@ -6,7 +6,7 @@
 /*   By: jberredj <jberredj@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/02 08:54:22 by jberredj          #+#    #+#             */
-/*   Updated: 2020/12/24 15:03:19 by jberredj         ###   ########.fr       */
+/*   Updated: 2021/08/16 13:03:57 by jberredj         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ t_list	*ft_lstnew(void *content)
 {
 	t_list	*new;
 
-	new = (t_list*)ft_calloc(sizeof(t_list), 1);
+	new = (t_list *)ft_calloc(sizeof(t_list), 1);
 	if (new == NULL)
 		return (NULL);
 	new->content = content;

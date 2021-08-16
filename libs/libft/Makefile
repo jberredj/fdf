@@ -6,13 +6,13 @@
 #    By: jberredj <jberredj@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/12/03 13:41:15 by jberredj          #+#    #+#              #
-#    Updated: 2021/07/15 11:51:33 by jberredj         ###   ########.fr        #
+#    Updated: 2021/07/21 22:08:28 by jberredj         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME			= 	libft.a
 CC				= 	clang
-CFLAGS			= 	-Wall -Werror -Wextra 
+CFLAGS			= 	-Wall -Werror -Wextra -O3
 
 BUFFER_SIZE		=	32
 
@@ -34,7 +34,7 @@ FT_STRING		=	ft_cw_sep.c ft_split.c ft_strchr.c \
 
 FT_TO			=	ft_atoi.c ft_itoa.c ft_intlen.c ft_intlen_base.c ft_lllen_base.c ft_uitoa.c \
 					ft_uintlen.c ft_lltoa.c ft_ulltoa.c ft_ulllen.c ft_lllen.c ft_tolower.c \
-					ft_toupper.c ft_ulllen_base.c ft_ulltoa_base.c ft_atof.c
+					ft_toupper.c ft_ulllen_base.c ft_ulltoa_base.c ft_atof.c ft_atoui32_base.c
 
 FT_UTILS		=	check_base.c ft_swap.c ft_abs.c
 
@@ -47,6 +47,9 @@ LIBS			=	ft_ctype ft_lst ft_io ft_string ft_to get_next_line
 all: $(NAME)
 	
 $(NAME): $(LIBS) lib 
+
+debug: CFLAGS += -g
+debug: all
 
 ft_ctype: objs
 	echo "Compiling ft_ctype.h functions"

@@ -6,7 +6,7 @@
 /*   By: jberredj <jberredj@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/30 17:55:32 by jberredj          #+#    #+#             */
-/*   Updated: 2021/01/27 15:12:48 by jberredj         ###   ########.fr       */
+/*   Updated: 2021/08/16 13:00:30 by jberredj         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ char	*ft_ulltoa(unsigned long long n)
 	char			*str;
 
 	str_len = ft_ulllen(n);
-	str = (char*)ft_calloc(sizeof(char), (str_len + 1));
+	str = (char *)ft_calloc(sizeof(char), (str_len + 1));
 	if (str == NULL)
 		return (NULL);
 	str[str_len] = '\0';

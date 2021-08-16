@@ -6,7 +6,7 @@
 /*   By: jberredj <jberredj@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/14 15:44:59 by jberredj          #+#    #+#             */
-/*   Updated: 2021/07/15 16:33:46 by jberredj         ###   ########.fr       */
+/*   Updated: 2021/07/20 12:33:43 by jberredj         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,11 +57,12 @@ void	init_win_struct(t_window *win, int width, int height, char *title)
 	win->win = NULL;
 	win->width = width;
 	win->height = height;
-	win->fb.front = new_image(win->mlx, 800, 600);
-	win->fb.back = new_image(win->mlx, 800, 600);
+	win->fb.front = new_image(win->mlx, width, height);
+	win->fb.back = new_image(win->mlx, width, height);
 	win->camera = vec2d(0.0, 0.0);
 	win->zoom = 32;
 	win->amplitude = 1;
+	win->objs = NULL;
 	init_key_struct(&win->flags);
 }
 

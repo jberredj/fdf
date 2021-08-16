@@ -6,7 +6,7 @@
 /*   By: jberredj <jberredj@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/17 16:40:41 by jberredj          #+#    #+#             */
-/*   Updated: 2021/02/23 11:49:34 by jberredj         ###   ########.fr       */
+/*   Updated: 2021/08/16 13:05:24 by jberredj         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,7 @@ static int	check_chest(int fd, char **chest, char **line)
 	line_read = 0;
 	if (chest[fd] == NULL)
 	{
-		chest[fd] = (char*)malloc(sizeof(char) * (BUFFER_SIZE + 1));
+		chest[fd] = (char *)malloc(sizeof(char) * (BUFFER_SIZE + 1));
 		if (chest[fd] == NULL)
 			return (gnl_clean(-1, line, chest, fd));
 	}
@@ -109,7 +109,7 @@ static int	get_line(int fd, char **chest, char **line)
 	return (1);
 }
 
-int			get_next_line(int fd, char **line)
+int	get_next_line(int fd, char **line)
 {
 	static char	*chest[FD_MAX];
 	int			valid_fd;
@@ -124,7 +124,7 @@ int			get_next_line(int fd, char **line)
 	valid_fd = read(fd, line, 0);
 	if (valid_fd == -1)
 		return (-1);
-	*line = (char*)malloc(sizeof(char));
+	*line = (char *)malloc(sizeof(char));
 	if (line == NULL)
 		return (gnl_clean(-1, line, chest, fd));
 	ft_bzero(*line, sizeof(char));

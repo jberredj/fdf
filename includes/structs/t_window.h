@@ -6,7 +6,7 @@
 /*   By: jberredj <jberredj@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/17 11:48:01 by jberredj          #+#    #+#             */
-/*   Updated: 2021/07/15 16:29:54 by jberredj         ###   ########.fr       */
+/*   Updated: 2021/08/16 13:08:39 by jberredj         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,6 @@ typedef struct s_keys
 	int8_t	zoom;
 	int8_t	amplitude;
 }				t_key;
-
 
 typedef struct s_window
 {

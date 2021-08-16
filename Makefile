@@ -6,19 +6,19 @@
 #    By: jberredj <jberredj@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/06/07 15:10:49 by jberredj          #+#    #+#              #
-#    Updated: 2021/07/16 15:14:00 by jberredj         ###   ########.fr        #
+#    Updated: 2021/08/16 12:50:04 by jberredj         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME		=	fdf.out
 CC			=	clang
-OPTI		=	#-O3
-CFLAGS		=	#-Wall -Wextra -Werror $(OPTI)
+OPTI		=	-O3
+CFLAGS		=	-Wall -Wextra -Werror $(OPTI)
 DEBUG		=	
 HEADERS		=	-I includes/
 
-WIDTH		=	800
-HEIGHT		=	600
+WIDTH		=	1280
+HEIGHT		=	720
 
 LIBS		=	libmlx.a libft.a
 
@@ -28,9 +28,10 @@ GEOMETRY	=	line.c projection.c vec2.c vec3.c vec3d_rotate.c
 
 MLX_UTILS	=	argb.c color_utils.c keypressed_hook.c keyreleased_hook.c mlx_utils.c mlx_utils2.c window.c
 
-PARSERS		=	args_parser.c parser.c
+PARSERS		=	args_parser.c color_loader.c coord_loaders.c create_3dobj.c fdf_parser_error.c fdf_parser_utils.c \
+				fdf_parser.c line_loader.c list_to_vertices.c malloc_new_line.c 
 
-MAIN		=	main.c exit.c
+MAIN		=	main.c exit.c render_loop.c
 
 SRCS	=	$(MAIN) $(MLX_UTILS) $(GEOMETRY) $(ARWING) $(3DOBJ) $(PARSERS)
 OBJS	=	$(SRCS:.c=.o)
@@ -55,7 +56,7 @@ no_opti: debug
 
 debug: MODULE += debug_func
 debug: DEBUG = -D DEBUG
-debug: CFLAGS = -g #-fsanitize=address 
+debug: CFLAGS = -g 
 debug: all
 
 mlx_utils: objs

@@ -1,54 +1,41 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_atoi.c                                          :+:      :+:    :+:   */
+/*   ft_atoui32_base.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jberredj <jberredj@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/23 15:40:58 by jberredj          #+#    #+#             */
-/*   Updated: 2021/08/16 13:03:01 by jberredj         ###   ########.fr       */
+/*   Updated: 2021/08/16 13:02:26 by jberredj         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include <stdint.h>
 #include "ft_to.h"
+#include "ft_utils.h"
 
-static void	long_max(unsigned long long *res, int *sign)
+uint32_t	ft_atoui32_base(const char *str, char *base)
 {
-	if (*res >= 9223372036854775807)
-	{
-		if (*sign == 1)
-		{
-			*res = 1;
-			*sign = -1;
-		}
-		else
-			*sign = 0;
-	}
-}
+	uint32_t	res;
+	size_t		base_len;
+	int			base_digit;
 
-int	ft_atoi(const char *str)
-{
-	unsigned long long	res;
-	int					digit;
-	int					sign;
-
+	base_len = check_base(base);
+	if (base_len < 2)
+		return (0);
 	while (ft_isspace((int)*str))
 		str++;
-	sign = 1;
-	if (*str == '+' || *str == '-')
-	{
-		if (*str == '-')
-			sign = -1;
-		str++;
-	}
-	digit = 0;
 	res = 0;
-	while (*str != '\0' && ft_isdigit((int)*str))
+	while (*str != '\0')
 	{
-		digit = *str - '0';
-		res = (res * 10) + digit;
+		base_digit = -1;
+		while (*str != base[++base_digit] && base_digit < (int)base_len)
+		{
+		}
+		if (!base[base_digit])
+			return (0);
+		res = (res * base_len) + base_digit;
 		str++;
 	}
-	long_max(&res, &sign);
-	return (res * sign);
+	return (res);
 }

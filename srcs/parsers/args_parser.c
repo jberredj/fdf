@@ -6,7 +6,7 @@
 /*   By: jberredj <jberredj@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/10 16:42:43 by jberredj          #+#    #+#             */
-/*   Updated: 2021/07/16 15:13:13 by jberredj         ###   ########.fr       */
+/*   Updated: 2021/07/21 22:05:34 by jberredj         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,9 +53,9 @@ int	parse_arg(int argc, char **argv)
 	return (fd);
 }
 
-int args_parser(int argc, char **argv, t_window *win)
+int	args_parser(int argc, char **argv, t_window *win)
 {
-	int error;
+	int	error;
 
 	error = parse_arg(argc, argv);
 	if (error >= 0)

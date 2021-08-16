@@ -6,7 +6,7 @@
 /*   By: jberredj <jberredj@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/29 09:53:20 by jberredj          #+#    #+#             */
-/*   Updated: 2021/07/15 17:19:15 by jberredj         ###   ########.fr       */
+/*   Updated: 2021/08/16 11:51:47 by jberredj         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ typedef struct s_vertex
 
 typedef struct s_3dobj
 {
-	int			nbr_vertices;
+	int			nbr_vert;
 	t_vertex	*vertices;
 	int			nbr_faces;
 	t_face		*faces;

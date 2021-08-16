@@ -6,7 +6,7 @@
 /*   By: jberredj <jberredj@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/30 10:56:03 by jberredj          #+#    #+#             */
-/*   Updated: 2021/02/24 16:12:22 by jberredj         ###   ########.fr       */
+/*   Updated: 2021/08/16 12:54:47 by jberredj         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ static size_t	ft_strlen_sep(const char *str, char sep)
 	return (i);
 }
 
-void		*ft_free_split(char **tab, size_t index)
+void	*ft_free_split(char **tab, size_t index)
 {
 	size_t	i;
 
@@ -38,7 +38,7 @@ void		*ft_free_split(char **tab, size_t index)
 	return (NULL);
 }
 
-size_t			ft_split_size(char **tab)
+size_t	ft_split_size(char **tab)
 {
 	size_t	size;
 
@@ -48,7 +48,7 @@ size_t			ft_split_size(char **tab)
 	return (size);
 }
 
-char			**ft_split(char const *s, char c)
+char	**ft_split(char const *s, char c)
 {
 	size_t	tab_size;
 	size_t	i;
@@ -56,7 +56,7 @@ char			**ft_split(char const *s, char c)
 	char	**tab;
 
 	tab_size = ft_cw_sep(s, c);
-	tab = (char**)ft_calloc(sizeof(char*), (tab_size + 1));
+	tab = (char **)ft_calloc(sizeof(char *), (tab_size + 1));
 	if (tab == NULL)
 		return (NULL);
 	i = 0;

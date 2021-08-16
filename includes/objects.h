@@ -6,7 +6,7 @@
 /*   By: jberredj <jberredj@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/09 15:56:03 by jberredj          #+#    #+#             */
-/*   Updated: 2021/07/15 14:49:20 by jberredj         ###   ########.fr       */
+/*   Updated: 2021/07/16 17:57:51 by jberredj         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,6 @@ t_3dobj	blank_obj(void);
 void	free_3dobj(t_3dobj *obj);
 void	put_model_line(t_edge edge, t_vertex *vertices, uint32_t color,
 			t_window *win);
-void	put_face_edge(int face_index, t_3dobj obj, uint32_t color,
-			t_window *win);
+void	put_face_edge(int face_index, t_3dobj obj, t_window *win);
 
 #endif

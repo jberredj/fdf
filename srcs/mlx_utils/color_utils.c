@@ -6,7 +6,7 @@
 /*   By: jberredj <jberredj@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/06 11:58:13 by jberredj          #+#    #+#             */
-/*   Updated: 2021/07/15 14:46:05 by jberredj         ###   ########.fr       */
+/*   Updated: 2021/07/21 21:53:20 by jberredj         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,4 +90,3 @@ uint32_t	blend_argb(uint32_t colora, uint32_t colorb)
 	c_out.a = 255 - c_out.a;
 	return (argb(c_out.a, c_out.r, c_out.g, c_out.b));
 }
-
