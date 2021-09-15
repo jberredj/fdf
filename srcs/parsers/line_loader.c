@@ -55,7 +55,10 @@ int	line_loader_selector(char **coord_strs, t_list **coord_list)
 		return (MALLOC_ERROR);
 	error = selector(coord_strs, new_line, line_size);
 	if (error)
+	{
+		free(new_elem);
 		return (error);
+	}
 	ft_lstadd_back(coord_list, new_elem);
 	return (0);
 }

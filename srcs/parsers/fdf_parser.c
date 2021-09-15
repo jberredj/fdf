@@ -43,9 +43,9 @@ void	fdf_parser(int fd, t_window *win)
 			panic_gnl_out(fd, GNL_ERROR, &y_list, win);
 		if (*line != '\0')
 			error = parse_line(line, &y_list);
+		free(line);
 		if (error)
 			panic_gnl_out(fd, error, &y_list, win);
-		free(line);
 	}
 	close(fd);
 	error = create_mesh(&y_list, &win->objs);
