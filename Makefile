@@ -6,14 +6,14 @@
 #    By: jberredj <jberredj@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/06/07 15:10:49 by jberredj          #+#    #+#              #
-#    Updated: 2021/08/16 12:50:04 by jberredj         ###   ########.fr        #
+#    Updated: 2021/09/15 12:50:34 by jberredj         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME		=	fdf.out
+NAME		=	fdf
 CC			=	clang
-OPTI		=	-O3
-CFLAGS		=	-Wall -Wextra -Werror $(OPTI)
+OPTI		=	-O2
+CFLAGS		=	-Wall -Werror -Wextra $(OPTI)
 DEBUG		=	
 HEADERS		=	-I includes/
 
@@ -33,7 +33,7 @@ PARSERS		=	args_parser.c color_loader.c coord_loaders.c create_3dobj.c fdf_parse
 
 MAIN		=	main.c exit.c render_loop.c
 
-SRCS	=	$(MAIN) $(MLX_UTILS) $(GEOMETRY) $(ARWING) $(3DOBJ) $(PARSERS)
+SRCS	=	$(MAIN) $(MLX_UTILS) $(GEOMETRY) $(3DOBJ) $(PARSERS)
 OBJS	=	$(SRCS:.c=.o)
 
 MODULE	=	main mlx_utils geometry 3dobj parsers
@@ -54,8 +54,6 @@ libft.a:
 no_opti: OPTI =
 no_opti: debug
 
-debug: MODULE += debug_func
-debug: DEBUG = -D DEBUG
 debug: CFLAGS = -g 
 debug: all
 
