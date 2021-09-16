@@ -6,7 +6,7 @@
 /*   By: jberredj <jberredj@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/06 11:58:13 by jberredj          #+#    #+#             */
-/*   Updated: 2021/07/21 21:53:20 by jberredj         ###   ########.fr       */
+/*   Updated: 2021/09/16 18:12:01 by jberredj         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ uint32_t	get_point_color(t_point cur, t_point p0, t_point p1, t_vec2i delta)
 	return (argb(0xFF, r, g, b));
 }
 
-int	addShade(uint32_t color, double shade)
+int	add_shade(uint32_t color, double shade)
 {
 	uint8_t	a;
 	uint8_t	r;

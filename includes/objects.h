@@ -6,7 +6,7 @@
 /*   By: jberredj <jberredj@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/09 15:56:03 by jberredj          #+#    #+#             */
-/*   Updated: 2021/07/16 17:57:51 by jberredj         ###   ########.fr       */
+/*   Updated: 2021/09/16 18:06:02 by jberredj         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 # define OBJECTS_H
 # include "structs/t_3dobj.h"
 # include "structs/t_window.h"
+
 t_edge	*new_edge(int a, int b);
 t_edge	set_edge(int a, int b);
 t_face	*new_face(int nbr_edges);

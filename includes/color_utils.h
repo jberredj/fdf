@@ -6,7 +6,7 @@
 /*   By: jberredj <jberredj@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/06 11:59:19 by jberredj          #+#    #+#             */
-/*   Updated: 2021/07/15 14:41:08 by jberredj         ###   ########.fr       */
+/*   Updated: 2021/09/16 18:12:00 by jberredj         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@
 # define WHITE 0xFFFFFFFF
 # define BLACK 0xFF000000
 
-int			addShade(uint32_t color, double shade);
+int			add_shade(uint32_t color, double shade);
 int			argb(uint8_t a, int8_t r, uint8_t g, uint8_t b);
 uint32_t	blend_argb(uint32_t colora, uint32_t colorb);
 uint8_t		get_a(uint32_t argb);

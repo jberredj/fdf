@@ -6,12 +6,13 @@
 /*   By: jberredj <jberredj@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/17 12:13:16 by jberredj          #+#    #+#             */
-/*   Updated: 2021/07/15 12:04:56 by jberredj         ###   ########.fr       */
+/*   Updated: 2021/09/16 18:06:45 by jberredj         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef T_VEC_H
 # define T_VEC_H
+
 typedef struct s_vec2i
 {
 	int	x;
@@ -37,5 +38,4 @@ typedef struct s_vec3d
 	double	y;
 	double	z;	
 }	t_vec3d;
-
 #endif

@@ -6,7 +6,7 @@
 /*   By: jberredj <jberredj@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/21 18:00:40 by jberredj          #+#    #+#             */
-/*   Updated: 2021/07/21 21:57:04 by jberredj         ###   ########.fr       */
+/*   Updated: 2021/09/16 18:08:06 by jberredj         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 #include "structs/t_vec.h"
 #include "geometry.h"
 
-double	normalizeAngle(double angle)
+double	normalize_angle(double angle)
 {
 	angle = fmod(angle, (2 * M_PI));
 	if (angle < 0)

@@ -6,7 +6,7 @@
 /*   By: jberredj <jberredj@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/21 21:58:53 by jberredj          #+#    #+#             */
-/*   Updated: 2021/08/16 11:51:59 by jberredj         ###   ########.fr       */
+/*   Updated: 2021/09/16 18:08:06 by jberredj         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,9 +53,9 @@ void	print_command(void *mlx, void *win)
 
 void	rotate_mesh(t_3dobj *obj, t_key flags)
 {
-	obj->orient.x = normalizeAngle(obj->orient.x + (double)flags.rotx * 0.01);
-	obj->orient.y = normalizeAngle(obj->orient.y + (double)flags.roty * 0.01);
-	obj->orient.z = normalizeAngle(obj->orient.z + (double)flags.rotz * 0.01);
+	obj->orient.x = normalize_angle(obj->orient.x + (double)flags.rotx * 0.01);
+	obj->orient.y = normalize_angle(obj->orient.y + (double)flags.roty * 0.01);
+	obj->orient.z = normalize_angle(obj->orient.z + (double)flags.rotz * 0.01);
 	if (flags.reset_cam)
 		obj->orient = vec3d(0.523599, 0.523599, 0.9);
 }

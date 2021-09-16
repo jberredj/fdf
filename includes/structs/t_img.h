@@ -6,13 +6,14 @@
 /*   By: jberredj <jberredj@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/17 12:06:06 by jberredj          #+#    #+#             */
-/*   Updated: 2021/06/22 10:51:12 by jberredj         ###   ########.fr       */
+/*   Updated: 2021/09/16 18:07:00 by jberredj         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef T_IMG_H
 # define T_IMG_H
 # include <stdbool.h>
+
 typedef struct s_img
 {
 	void	*ptr;

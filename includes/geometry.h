@@ -6,7 +6,7 @@
 /*   By: jberredj <jberredj@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/10 10:47:58 by jberredj          #+#    #+#             */
-/*   Updated: 2021/07/21 21:57:18 by jberredj         ###   ########.fr       */
+/*   Updated: 2021/09/16 18:08:05 by jberredj         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,6 @@ t_vec3d		vec3d_rot_y(t_vec3d v, double angle);
 t_vec3d		vec3d_rot_z(t_vec3d v, double angle);
 t_vec2i		vec2d_to_i(t_vec2d v);
 t_vec2d		ortho_projection(t_vec3d point, double zoom);
-double		normalizeAngle(double angle);
+double		normalize_angle(double angle);
 
 #endif
