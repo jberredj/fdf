@@ -6,7 +6,7 @@
 #    By: jberredj <jberredj@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/06/07 15:10:49 by jberredj          #+#    #+#              #
-#    Updated: 2021/09/20 12:31:15 by jberredj         ###   ########.fr        #
+#    Updated: 2021/09/20 17:00:09 by jberredj         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -93,6 +93,10 @@ re: fclean all
 ## 								Extra recipes								 ##
 ###############################################################################
 
+ffclean: fclean
+	make -C libs/libft fclean
+	make -C libs/minilibx-linux clean
+
 $(OBJS): $(SRCS)
 	printf "$(BLUE)Compiling $(LIGHT_PURPLE)$(NAME) $(BLUE)sources$(NC)\n"
 	find ./objs/ -type f -exec touch {} +
@@ -132,5 +136,5 @@ norm:
 #		   Removing mlx.h, because it's not normed and cause norminette to fail
 #												↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓
 	norminette $(SRCS) $(addprefix $(INC_DIR)/, $(filter-out mlx.h, $(HEADERS))) \
-	; if [ "$$?" -ne "0" ]; then printf "$(RED)NORM ERROR$(NC)\n"; \
+	libs/libft ; if [ "$$?" -ne "0" ]; then printf "$(RED)NORM ERROR$(NC)\n"; \
 	else printf "$(GREEN)NORM OK$(NC)\n";fi
