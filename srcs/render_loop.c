@@ -6,7 +6,7 @@
 /*   By: jberredj <jberredj@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/21 21:58:53 by jberredj          #+#    #+#             */
-/*   Updated: 2021/09/16 18:08:06 by jberredj         ###   ########.fr       */
+/*   Updated: 2021/09/20 11:25:39 by jberredj         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,8 +71,8 @@ void	move_mesh(t_window *win, t_key flags)
 	if (flags.reset_pos)
 	{
 		win->camera = vec2d(0.0, 0.0);
-		win->zoom = 32;
-		win->amplitude = 1;
+		win->zoom = 40;
+		win->amplitude = 0.15;
 	}
 }
 

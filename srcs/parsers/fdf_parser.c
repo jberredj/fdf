@@ -6,7 +6,7 @@
 /*   By: jberredj <jberredj@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/10 15:36:41 by jberredj          #+#    #+#             */
-/*   Updated: 2021/08/16 12:49:13 by jberredj         ###   ########.fr       */
+/*   Updated: 2021/09/20 11:17:28 by jberredj         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 #include "error_code.h"
 #include "structs/t_window.h"
 #include "../libs/libft/includes/libft.h"
+#include <math.h>
 #include "exit.h"
 #include "objects.h"
 #include "geometry.h"
